@@ -1,11 +1,16 @@
-import "./App.css";
+import "./scss/main/app.scss";
+import { Routes, Route } from "react-router-dom";
+import { Main, Login, Register } from "./components";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Hello World</h1>
-      </header>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
