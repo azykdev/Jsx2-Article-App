@@ -1,11 +1,21 @@
+import { useDispatch, useSelector } from "react-redux";
 import "../scss/components/login.scss";
 import { Input1 } from "../ui";
 import { useState } from "react";
-
+import { loginStart } from "../store/slice/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
+
+  const login = (e) => {
+    e.preventDefault();
+    dispatch(loginStart({ email, password }));
+  };
+
+  console.log("loading", loading, "error", error);
 
   return (
     <main className="bg-dark">
@@ -33,7 +43,12 @@ function Login() {
           setState={setPassword}
         />
 
-        <button className="btn btn-primary w-100 py-2 mt-3" type="submit">
+        <button
+          className="btn btn-primary w-100 py-2 mt-3"
+          type="submit"
+          disabled={loading}
+          onClick={login}
+        >
           Login
         </button>
         <p className="mt-5 mb-3 text-light">© 2024</p>
