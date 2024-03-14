@@ -4,12 +4,13 @@ import { Input1, Spinner1 } from "../ui";
 import { useState } from "react";
 import { signStart, signSuccess, signFailed } from "../store/slice/auth";
 import AuthService from "../service/auth";
+import { ValidationError } from "./";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const login = async (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ function Login() {
       console.log(response);
       dispatch(signSuccess(response.user));
     } catch (error) {
-      dispatch(signFailed(error.response.data));
+      dispatch(signFailed(error.response.data.errors));
     }
   };
 
@@ -33,6 +34,8 @@ function Login() {
           width="50"
         />
         <h1 className="h3 mb-3 fw-normal text-light">Please login</h1>
+
+        <ValidationError />
 
         <Input1
           label="Email address"

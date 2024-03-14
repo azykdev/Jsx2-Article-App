@@ -4,6 +4,7 @@ import { Input1, Spinner1 } from "../ui";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthService from "../service/auth";
+import { ValidationError } from "./";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ function Register() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const register = async (e) => {
     e.preventDefault();
@@ -22,10 +23,10 @@ function Register() {
         username,
         password,
       });
-      console.log(response);
+
       dispatch(signSuccess(response.user));
     } catch (error) {
-      dispatch(signFailed(error.response.data));
+      dispatch(signFailed(error.response.data.errors));
     }
   };
 
@@ -39,6 +40,16 @@ function Register() {
           width="50"
         />
         <h1 className="h3 mb-3 fw-normal text-light">Please register</h1>
+
+        {/* {error && (
+          <ul className="text-danger ps-3" style={{ listStyle: "circle" }}>
+            <li>{error.email[0]}</li>
+            <li>{error.username[0]}</li>
+            <li>{error.password[0]}</li>
+          </ul>
+        )} */}
+
+        <ValidationError />
 
         <Input1
           label="Email address"
