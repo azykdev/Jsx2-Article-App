@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "../scss/components/login.scss";
 import { Input1, Spinner1 } from "../ui";
 import { useState } from "react";
-import { loginStart } from "../store/slice/auth";
+import { signStart, signSuccess, signFailed } from "../store/slice/auth";
+import AuthService from "../service/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,12 +11,17 @@ function Login() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    dispatch(loginStart({ email, password }));
+    dispatch(signStart());
+    try {
+      const response = await AuthService.login({ email, password });
+      console.log(response);
+      dispatch(signSuccess(response.user));
+    } catch (error) {
+      dispatch(signFailed(error.response.data));
+    }
   };
-
-  console.log("loading", loading, "error", error);
 
   return (
     <main className="bg-dark">
