@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../scss/components/login.scss";
-import { Input1 } from "../ui";
+import { Input1, Spinner1 } from "../ui";
 import { useState } from "react";
 import { loginStart } from "../store/slice/auth";
 
@@ -49,7 +49,7 @@ function Login() {
           disabled={loading}
           onClick={login}
         >
-          Login
+          {loading ? <Spinner1 /> : "Login"}
         </button>
         <p className="mt-5 mb-3 text-light">© 2024</p>
       </form>

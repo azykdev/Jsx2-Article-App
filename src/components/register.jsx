@@ -1,11 +1,21 @@
 import "../scss/components/register.scss";
-import { Input1 } from "../ui";
+import { regiterStart } from "../store/slice/auth";
+import { Input1, Spinner1 } from "../ui";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
+
+  const register = (e) => {
+    e.preventDefault();
+    dispatch(regiterStart({ email, username, password }));
+  }
 
   return (
     <main className="bg-dark">
@@ -39,8 +49,8 @@ function Register() {
           state={password}
           setState={setPassword}
         />
-        <button className="btn btn-primary w-100 py-2 mt-3" type="submit">
-          Register
+        <button className="btn btn-primary w-100 py-2 mt-3" type="submit" disabled={loading} onClick={register} >
+          {loading ? <Spinner1 /> : "Register"}
         </button>
         <p className="mt-5 mb-3 text-light">© 2024</p>
       </form>
