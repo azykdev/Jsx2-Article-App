@@ -2,10 +2,12 @@ import "./scss/main/app.scss";
 import { Routes, Route } from "react-router-dom";
 import { Main, Login, Register, Navbar } from "./components";
 import { useEffect } from "react";
-import AuthService from "./service/auth";
 import { useDispatch } from "react-redux";
 import { signStart, signSuccess } from "./store/slice/auth";
 import { getItem } from "./helpers/persistance-storage";
+import AuthService from "./service/auth";
+import ArticleService from "./service/article";
+import { getArticlesStart, getArticlesSuccess } from "./store/slice/article";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +22,22 @@ function App() {
     }
   };
 
+  const getAllArticles = async () => {
+    dispatch(getArticlesStart());
+    try {
+      const res = await ArticleService.getAllArticles();
+      dispatch(getArticlesSuccess(res.articles));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // get all articles
+  useEffect(() => {
+    getAllArticles();
+  }, []);
+
+  // get user
   useEffect(() => {
     const token = getItem("token");
     if (token) {

@@ -44,7 +44,7 @@ function Register() {
   }, [loggedIn]);
 
   return (
-    <main className="bg-dark">
+    <main id="register"  className="bg-dark">
       <form>
         <img
           className="mb-4"

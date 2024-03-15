@@ -33,7 +33,7 @@ function Login() {
   }, [loggedIn]);
 
   return (
-    <main className="bg-dark">
+    <main id="login" className="bg-dark">
       <form>
         <img
           className="mb-4"
