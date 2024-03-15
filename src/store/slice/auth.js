@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setItem } from "../../helpers/persistance-storage";
+import { removeItem, setItem } from "../../helpers/persistance-storage";
 
 const initialState = {
   user: null,
@@ -27,8 +27,16 @@ export const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    // SIGN OUT REDUCER ========================== *** *** *** ================================
+    signOut: (state) => {
+      state.loggedIn = false;
+      state.user = null;
+      removeItem("token");
+    },
   },
 });
 
-export const { signStart, signSuccess, signFailed } = authSlice.actions;
+export const { signStart, signSuccess, signFailed, signOut } =
+  authSlice.actions;
 export default authSlice.reducer;

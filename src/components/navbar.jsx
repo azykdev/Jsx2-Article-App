@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
-import { UseSelector, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { signOut } from "../store/slice/auth";
 
 function Navbar() {
   const { loggedIn, user } = useSelector((state) => state.auth);
-  console.log(loggedIn);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(signOut());
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav
@@ -27,12 +36,12 @@ function Navbar() {
               {loggedIn ? (
                 <>
                   <span className="text-light me-4">{user.username}</span>
-                  <button className="btn btn-outline-light me-4" to={"/login"}>
+                  <button
+                    onClick={logout}
+                    className="btn btn-outline-light me-4"
+                  >
                     Logout
                   </button>
-                  {/* <Link className="text-light me-4" to={"/login"}>
-                    Login
-                  </Link> */}
                 </>
               ) : (
                 <>

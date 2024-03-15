@@ -13,8 +13,6 @@ const AuthService = {
 
     return data;
   },
-  // Logout
-  async logout() {},
   // Get current user
   async getCurrentUser() {
     const {data} = await axios.get("/user");
