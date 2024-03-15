@@ -30,9 +30,9 @@ function Navbar() {
                   <button className="btn btn-outline-light me-4" to={"/login"}>
                     Logout
                   </button>
-                  <Link className="text-light me-4" to={"/login"}>
+                  {/* <Link className="text-light me-4" to={"/login"}>
                     Login
-                  </Link>
+                  </Link> */}
                 </>
               ) : (
                 <>

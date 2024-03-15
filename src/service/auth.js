@@ -17,7 +17,9 @@ const AuthService = {
   async logout() {},
   // Get current user
   async getCurrentUser() {
-    const response = await axios.get("/user");
+    const {data} = await axios.get("/user");
+
+    return data;
   },
   // Get all users
   async getAllUsers() {},

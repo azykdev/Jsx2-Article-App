@@ -30,7 +30,7 @@ function Login() {
     if (loggedIn) {
       navigate("/");
     }
-  }, []);
+  }, [loggedIn]);
 
   return (
     <main className="bg-dark">
