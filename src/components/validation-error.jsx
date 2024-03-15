@@ -23,8 +23,6 @@ function ValidationError() {
   // Way 5 ---------------------------------- *** ---------------------------------
   // const errorMessages = error ? Object.values(error).flat() : [];
 
-  console.log(errorMessages);
-
   return (
     error && (
       <ul className="text-danger ps-3" style={{ listStyle: "circle" }}>

@@ -1,18 +1,24 @@
 import "../scss/components/register.scss";
 import { signFailed, signStart, signSuccess } from "../store/slice/auth";
 import { Input1, Spinner1 } from "../ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthService from "../service/auth";
 import { ValidationError } from "./";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  // variables
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // hooks
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, loggedIn } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  console.log(loggedIn);
 
   const register = async (e) => {
     e.preventDefault();
@@ -25,10 +31,17 @@ function Register() {
       });
 
       dispatch(signSuccess(response.user));
+      navigate("/");
     } catch (error) {
       dispatch(signFailed(error.response.data.errors));
     }
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <main className="bg-dark">

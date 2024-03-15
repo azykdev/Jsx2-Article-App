@@ -1,28 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../scss/components/login.scss";
 import { Input1, Spinner1 } from "../ui";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signStart, signSuccess, signFailed } from "../store/slice/auth";
 import AuthService from "../service/auth";
 import { ValidationError } from "./";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, loggedIn } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const login = async (e) => {
     e.preventDefault();
     dispatch(signStart());
     try {
       const response = await AuthService.login({ email, password });
-      console.log(response);
       dispatch(signSuccess(response.user));
+      navigate("/");
     } catch (error) {
       dispatch(signFailed(error.response.data.errors));
     }
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <main className="bg-dark">

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { UseSelector, useSelector } from "react-redux";
 
 function Navbar() {
+  const { loggedIn, user } = useSelector((state) => state.auth);
+  console.log(loggedIn);
   return (
     <div>
       <nav
@@ -21,12 +24,26 @@ function Navbar() {
             </Link>
 
             <div className="text-end">
-              <Link className="text-light me-4" to={"/login"}>
-                Login
-              </Link>
-              <Link className="text-light" to="/register">
-                Register
-              </Link>
+              {loggedIn ? (
+                <>
+                  <span className="text-light me-4">{user.username}</span>
+                  <button className="btn btn-outline-light me-4" to={"/login"}>
+                    Logout
+                  </button>
+                  <Link className="text-light me-4" to={"/login"}>
+                    Login
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link className="text-light me-4" to={"/login"}>
+                    Login
+                  </Link>
+                  <Link className="text-light" to="/register">
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
