@@ -29,21 +29,6 @@ function App() {
     }
   };
 
-  const getAllArticles = async () => {
-    dispatch(getArticlesStart());
-    try {
-      const res = await ArticleService.getAllArticles();
-      dispatch(getArticlesSuccess(res.articles));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // get all articles
-  useEffect(() => {
-    getAllArticles();
-  }, []);
-
   // get user
   useEffect(() => {
     const token = getItem("token");

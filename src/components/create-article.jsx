@@ -1,26 +1,34 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ArticleService from "../service/article";
 
 function CreateArticle() {
-  const [form, setForm] = useState({
+  // hooks
+  const navigate = useNavigate();
+  const [article, setForm] = useState({
     title: "",
     description: "",
     body: "",
   });
 
+  // handle change
   const handleChange = (e) => {
     setForm({
-      ...form,
+      ...article,
       [e.target.name]: e.target.value,
     });
   };
 
+  // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(form);
-      // const res = await ArticleService.createArticle(form);
-      // console.log(res);
+      console.log(article);
+      const res = await ArticleService.createArticle(article);
+      console.log(res);
+
+      navigate(`/`);
+
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +51,7 @@ function CreateArticle() {
             maxLength={50}
             onChange={handleChange}
             name="title"
-            value={form.title}
+            value={article.title}
           />
           <input
             type="text"
@@ -54,7 +62,7 @@ function CreateArticle() {
             maxLength={50}
             onChange={handleChange}
             name="description"
-            value={form.description}
+            value={article.description}
           />
           <textarea
             cols="30"
@@ -67,7 +75,7 @@ function CreateArticle() {
             maxLength={1000}
             onChange={handleChange}
             name="body"
-            value={form.body}
+            value={article.body}
           ></textarea>
           <button
             onClick={handleSubmit}

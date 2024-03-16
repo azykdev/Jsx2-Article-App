@@ -14,8 +14,8 @@ const ArticleService = {
   },
 
   // Create article
-  async createArticle(form) {
-    const { data } = await axios.post("/articles", form);
+  async createArticle(article) {
+    const { data } = await axios.post("/articles", {article});
     return data;
   },
 };
