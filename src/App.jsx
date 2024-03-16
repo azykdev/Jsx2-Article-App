@@ -1,6 +1,6 @@
 import "./scss/main/app.scss";
 import { Routes, Route } from "react-router-dom";
-import { Main, Login, Register, Navbar } from "./components";
+import { Main, Login, Register, Navbar, ArticleDetail } from "./components";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signStart, signSuccess } from "./store/slice/auth";
@@ -52,6 +52,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="article/:slug" element={<ArticleDetail />} />
       </Routes>
     </div>
   );

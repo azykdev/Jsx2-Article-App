@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function ArticleCard({ article }) {
+  const navigate = useNavigate();
   return (
     <div className="card shadow-sm h-100">
       <img
@@ -17,7 +20,7 @@ function ArticleCard({ article }) {
         <p>{article.description.substring(0, 100)}</p>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
-            <button type="button" className="btn btn-sm btn-outline-primary">
+            <button onClick={() => navigate(`/article/${article.slug}`)} type="button" className="btn btn-sm btn-outline-primary">
               View
             </button>
             <button type="button" className="btn btn-sm btn-outline-success">
