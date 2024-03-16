@@ -91,7 +91,7 @@ function Register() {
           disabled={loading}
           onClick={register}
         >
-          {loading ? <Spinner1 /> : "Register"}
+          {loading ? <Spinner1 size="sm" /> : "Register"}
         </button>
         <p className="mt-5 mb-3 text-light">© 2024</p>
       </form>

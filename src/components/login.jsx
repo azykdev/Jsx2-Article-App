@@ -66,7 +66,7 @@ function Login() {
           disabled={loading}
           onClick={login}
         >
-          {loading ? <Spinner1 /> : "Login"}
+          {loading ? <Spinner1 size="sm" /> : "Login"}
         </button>
         <p className="mt-5 mb-3 text-light">© 2024</p>
       </form>

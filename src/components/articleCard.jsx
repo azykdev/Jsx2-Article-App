@@ -1,6 +1,6 @@
 function ArticleCard({ article }) {
   return (
-    <div className="card shadow-sm" style={{ height: "28rem" }}>
+    <div className="card shadow-sm h-100">
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9XMbR4wA5Os7Yig9OcBDagg5t9ZpZ7_H-XY0Jxr8SBQ&s"
         width={"100%"}
