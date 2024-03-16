@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 function ArticleCard({ article }) {
   const navigate = useNavigate();
+
   return (
     <div className="card shadow-sm h-100">
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9XMbR4wA5Os7Yig9OcBDagg5t9ZpZ7_H-XY0Jxr8SBQ&s"
+        src="https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_640.png"
         width={"100%"}
         height={"225"}
         className="card-img-top"
@@ -18,9 +19,15 @@ function ArticleCard({ article }) {
         </p>
         <h6 className="fw-bold">{article.title}</h6>
         <p>{article.description.substring(0, 100)}</p>
+      </div>
+      <div className="card-footer">
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
-            <button onClick={() => navigate(`/article/${article.slug}`)} type="button" className="btn btn-sm btn-outline-primary">
+            <button
+              onClick={() => navigate(`/article/${article.slug}`)}
+              type="button"
+              className="btn btn-sm btn-outline-primary"
+            >
               View
             </button>
             <button type="button" className="btn btn-sm btn-outline-success">
@@ -31,7 +38,7 @@ function ArticleCard({ article }) {
             </button>
           </div>
           <small className="text-body-secondary">
-            {article.createdAt.substring(0, 10)}
+            {new Date(article.createdAt).toDateString()}
           </small>
         </div>
       </div>
