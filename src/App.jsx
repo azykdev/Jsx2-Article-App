@@ -7,14 +7,13 @@ import {
   Navbar,
   ArticleDetail,
   CreateArticle,
+  EditArticle,
 } from "./components";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signStart, signSuccess } from "./store/slice/auth";
 import { getItem } from "./helpers/persistance-storage";
 import AuthService from "./service/auth";
-import ArticleService from "./service/article";
-import { getArticlesStart, getArticlesSuccess } from "./store/slice/article";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,8 +43,9 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="article/:slug" element={<ArticleDetail />} />
-        <Route path="create-article" element={<CreateArticle />} />
+        <Route path="/article/:slug" element={<ArticleDetail />} />
+        <Route path="/create-article" element={<CreateArticle />} />
+        <Route path="/edit-article/:slug" element={<EditArticle />} />
       </Routes>
     </div>
   );

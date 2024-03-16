@@ -42,9 +42,10 @@ function ArticleCard({ article, getAllArticles }) {
             >
               View
             </button>
-            {article.author.username == user.username && (
+            {user && article.author.username == user.username && (
               <>
                 <button
+                  onClick={() => navigate(`/edit-article/${article.slug}`)}
                   type="button"
                   className="btn btn-sm btn-outline-success"
                 >

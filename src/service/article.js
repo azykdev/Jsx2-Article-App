@@ -20,8 +20,8 @@ const ArticleService = {
   },
 
   // Update article
-  async updateArticle(id, article) {
-    const { data } = await axios.put(`/articles/${id}`, {article});
+  async updateArticle(slug, article) {
+    const { data } = await axios.put(`/articles/${slug}`, {article});
     return data;
   },
 
