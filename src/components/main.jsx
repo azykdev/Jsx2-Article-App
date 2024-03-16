@@ -9,17 +9,18 @@ function Main() {
   const dispatch = useDispatch();
   const { articles, loading } = useSelector((state) => state.article);
 
+  const getAllArticles = async () => {
+    dispatch(getArticlesStart());
+    try {
+      const res = await ArticleService.getAllArticles();
+      dispatch(getArticlesSuccess(res.articles));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // get all articles
   useEffect(() => {
-    const getAllArticles = async () => {
-      dispatch(getArticlesStart());
-      try {
-        const res = await ArticleService.getAllArticles();
-        dispatch(getArticlesSuccess(res.articles));
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
     getAllArticles();
   }, []);
@@ -39,7 +40,7 @@ function Main() {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 py-3">
           { articles && articles.map((article) => (
             <div className="col" key={article.id}>
-              <ArticleCard article={article} />
+              <ArticleCard article={article} getAllArticles={getAllArticles} />
             </div>
           ))}
         </div>

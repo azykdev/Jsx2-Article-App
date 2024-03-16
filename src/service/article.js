@@ -18,6 +18,18 @@ const ArticleService = {
     const { data } = await axios.post("/articles", {article});
     return data;
   },
+
+  // Update article
+  async updateArticle(id, article) {
+    const { data } = await axios.put(`/articles/${id}`, {article});
+    return data;
+  },
+
+  // Delete article
+  async deleteArticle(slug) {
+    const { data } = await axios.delete(`/articles/${slug}`);
+    return data;
+  },
 };
 
 export default ArticleService;
