@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import ArticleCard from "./articleCard";
+import { ArticleCard } from "./";
 import { Spinner1 } from "../ui";
 
 function Main() {
@@ -13,7 +13,7 @@ function Main() {
             className="d-flex justify-content-center align-items-center"
             style={{ height: "80vh" }}
           >
-            <Spinner1 size={"md"} />
+            <Spinner1  />
           </div>
         )}
 

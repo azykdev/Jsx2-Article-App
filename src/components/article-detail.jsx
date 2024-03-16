@@ -35,7 +35,7 @@ function ArticleDetail() {
           className="d-flex justify-content-center align-items-center"
           style={{ height: "80vh" }}
         >
-          <Spinner1 size={"md"} />
+          <Spinner1 />
         </div>
       )}
 

@@ -12,6 +12,12 @@ const ArticleService = {
     const { data } = await axios.get(`/articles/${slug}`);
     return data;
   },
+
+  // Create article
+  async createArticle(form) {
+    const { data } = await axios.post("/articles", form);
+    return data;
+  },
 };
 
 export default ArticleService;

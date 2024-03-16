@@ -1,6 +1,13 @@
 import "./scss/main/app.scss";
 import { Routes, Route } from "react-router-dom";
-import { Main, Login, Register, Navbar, ArticleDetail } from "./components";
+import {
+  Main,
+  Login,
+  Register,
+  Navbar,
+  ArticleDetail,
+  CreateArticle,
+} from "./components";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { signStart, signSuccess } from "./store/slice/auth";
@@ -53,6 +60,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="article/:slug" element={<ArticleDetail />} />
+        <Route path="create-article" element={<CreateArticle />} />
       </Routes>
     </div>
   );

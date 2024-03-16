@@ -35,6 +35,9 @@ function Navbar() {
             <div className="text-end">
               {loggedIn ? (
                 <>
+                  <Link className="text-primary me-4" to={"/create-article"}>
+                    Create Article
+                  </Link>
                   <span className="text-light me-4">{user.username}</span>
                   <button
                     onClick={logout}
